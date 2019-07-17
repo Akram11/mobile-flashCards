@@ -15,7 +15,7 @@ import {
 function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!hola</Text>
+      <Text>Open up App.js to start working on your app!holasfsfsf</Text>
       {/* <DescksList /> */}
       <DeckView />
       <QuizView />
