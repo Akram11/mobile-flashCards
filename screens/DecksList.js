@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { NewDeck } from './NewDeck';
 
-class DescksList extends Component {
+class DecksList extends Component {
   render() {
     return (
       <View>
@@ -20,4 +20,4 @@ class DescksList extends Component {
   }
 }
 
-export default DescksList;
+export default DecksList;
