@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
-import { NewDeck } from './NewDeck';
+import {getDecks} from '../utils/api'
 
 class DecksList extends Component {
+
+  componentDidMount() {
+    getDecks()
+      .then(decks => this.setState({decks}))
+  }
+
   render() {
     return (
       <View>
