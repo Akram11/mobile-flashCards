@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
+
 class DeckView extends Component {
   render() {
-    const name = this.props.navigation.state.params.deck;
-
+    const {deck, id, cardsNumber} = this.props.navigation.state.params;
+    console.log(this.props)
     return (
       <View>
-        <Text>{name}</Text>
+        <Text>{deck}{id}{cardsNumber}</Text>
         <Button
           title='Take Quiz'
           onPress={() => this.props.navigation.navigate('Quiz')}

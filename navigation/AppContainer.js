@@ -8,7 +8,7 @@ import QuizView from '../screens/QuizView';
 
 const AppNavigation = createStackNavigator({
   Home: {
-    screen: DeckList
+    screen: DeckList,
   },
   NewDeck: {
     screen: NewDeck
@@ -21,7 +21,7 @@ const AppNavigation = createStackNavigator({
   },
   Quiz: {
     screen: QuizView
-  }
+  },
 });
 
 export default createAppContainer(AppNavigation);

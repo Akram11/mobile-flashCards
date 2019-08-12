@@ -1,5 +1,6 @@
 export default {
-  react: {
+  React: {
+    id: '1',
     title: 'React',
     questions: [
       {
@@ -13,6 +14,7 @@ export default {
     ]
   },
   JavaScript: {
+    id: '2',
     title: 'JavaScript',
     questions: [
       {

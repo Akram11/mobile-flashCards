@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { getInitialData } from '../utils/api';
 import { AsyncStorage } from 'react-native';
 
 class DecksList extends Component {
+
+  static navigationOptions = {
+    headerTitle: 'Flash Cards',
+  }; 
+
+  
   state = {
     decks: {}
   };
@@ -13,38 +19,25 @@ class DecksList extends Component {
       const decks = JSON.parse(data);
       this.setState({ decks });
     });
+    
   }
 
   render() {
-    // console.log(
-    //   'asdfasdf',
-    //   this.state.decks,
-    //   'fghjfghj',
-    //   Object.keys(this.state.decks),
-    //   '[[[[[[[[[[[',
-    //   Object.values(this.state.decks)
-    // );
-    console.log(Object.this.state.)
+
+    //TODO: make this a component on a different file! 
     return (
       <View style={styles.container}>
         <FlatList
-          data={Object.keys(this.state.decks)}
-          renderItem={deck => (
-            <Button
-              title={deck.item}
-              onPress={() =>
-                this.props.navigation.navigate('Deck', { deck: deck.item })
-              }
-            />
+          data={Object.values(this.state.decks)}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.Button}  onPress={() =>
+              this.props.navigation.navigate('Deck', { deck: item.title, cardsNumber: item.questions.length, id: item.id })
+            }>
+              <Text style = {styles.title}>{item.title}</Text>
+            </TouchableOpacity>
           )}
+          keyExtractor={(item) => item.id}
         />
-
-        <Text>
-          {Object.values(this.state.decks).map(deck => {
-            return <Text key={deck.title}>{deck.title}</Text>;
-          })}
-        </Text>
-
         <Button
           title='Add Deck'
           onPress={() => this.props.navigation.navigate('NewDeck')}
@@ -59,6 +52,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     justifyContent: 'flex-start'
+  },
+  Button: {
+    flex: 1,
+    justifyContent: "center",
+    minHeight: 120,
+    marginBottom: 10,
+    padding: 20,
+    borderRadius: 5,
+    borderWidth: 2,
+  }, title: {
+    fontSize: 25,
+    textAlign: "center"
   }
 });
 
