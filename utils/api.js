@@ -13,16 +13,12 @@ export const getDecks = () => {
 export const getInitialData = () => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
-    console.log('cat', data);
     if (data === null) {
       return AsyncStorage.setItem(
         FLASHCARDS_STORAGE_KEY,
         JSON.stringify(initialData)
-      ).then(result => {
-        console.log('dog', result);
-      });
+      );
     } else {
-      console.log('camel', JSON.stringify(data));
       return JSON.stringify(data);
     }
   });

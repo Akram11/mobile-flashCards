@@ -4,7 +4,7 @@ import AppContainer from './navigation/AppContainer';
 
 class App extends Component {
   render() {
-    return <AppContainer />;
+    return <AppContainer style={styles.container} />;
   }
 }
 

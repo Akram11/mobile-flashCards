@@ -3,9 +3,11 @@ import { View, Text, Button } from 'react-native';
 
 class DeckView extends Component {
   render() {
+    const name = this.props.navigation.state.params.deck;
+
     return (
       <View>
-        <Text>Deck Screen</Text>
+        <Text>{name}</Text>
         <Button
           title='Take Quiz'
           onPress={() => this.props.navigation.navigate('Quiz')}
