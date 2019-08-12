@@ -9,28 +9,35 @@ class DecksList extends Component {
     headerTitle: 'Flash Cards',
   }; 
 
-  
+
   state = {
     decks: {}
   };
 
-  componentDidMount() {
+  componentWillMount() {
     getInitialData().then(data => {
       const decks = JSON.parse(data);
       this.setState({ decks });
     });
-    
   }
 
   render() {
 
     //TODO: make this a component on a different file! 
-    return (
+    if (Object.keys(this.state.decks).length === 0){
+      return <View style={styles.blank}><Text style={{ fontSize: 20 }}> No decks yet!! </Text>
+              <Button
+          title='Add Deck'
+          onPress={() => this.props.navigation.navigate('NewDeck')}
+        /></View>
+    }else
+
+  {  return this.state.decks && (
       <View style={styles.container}>
         <FlatList
           data={Object.values(this.state.decks)}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.Button}  onPress={() =>
+            <TouchableOpacity style={styles.listItem}  onPress={() =>
               this.props.navigation.navigate('Deck', { deck: item.title, cardsNumber: item.questions.length, id: item.id })
             }>
               <Text style = {styles.title}>{item.title}</Text>
@@ -43,7 +50,9 @@ class DecksList extends Component {
           onPress={() => this.props.navigation.navigate('NewDeck')}
         />
       </View>
-    );
+    ) }
+    // :
+    //  (<View style={styles.container}> <Text style={{ fontSize: 18 }}> no decks yet </Text></View>);
   }
 }
 
@@ -53,7 +62,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: 'flex-start'
   },
-  Button: {
+  listItem: {
     flex: 1,
     justifyContent: "center",
     minHeight: 120,
@@ -61,7 +70,13 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 5,
     borderWidth: 2,
-  }, title: {
+  },
+  blank: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+   title: {
     fontSize: 25,
     textAlign: "center"
   }
