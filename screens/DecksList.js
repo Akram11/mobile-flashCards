@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { getInitialData } from '../utils/api';
-import { AsyncStorage } from 'react-native';
+import React, { Component } from "react";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
+import { getInitialData } from "../utils/api";
+import CustomButton from "../components/CustomButton";
+import { AsyncStorage } from "react-native";
 
 class DecksList extends Component {
-
   static navigationOptions = {
-    headerTitle: 'Flash Cards',
-  }; 
-
+    headerTitle: "Flash Cards"
+  };
 
   state = {
     decks: {}
@@ -22,37 +28,50 @@ class DecksList extends Component {
   }
 
   render() {
-
-    //TODO: make this a component on a different file! 
-    if (Object.keys(this.state.decks).length === 0){
-      return <View style={styles.blank}><Text style={{ fontSize: 20 }}> No decks yet!! </Text>
-              <Button
-          title='Add Deck'
-          onPress={() => this.props.navigation.navigate('NewDeck')}
-        /></View>
-    }else
-
-  {  return this.state.decks && (
-      <View style={styles.container}>
-        <FlatList
-          data={Object.values(this.state.decks)}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.listItem}  onPress={() =>
-              this.props.navigation.navigate('Deck', { deck: item.title, cardsNumber: item.questions.length, id: item.id })
-            }>
-              <Text style = {styles.title}>{item.title}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.id}
-        />
-        <Button
-          title='Add Deck'
-          onPress={() => this.props.navigation.navigate('NewDeck')}
-        />
-      </View>
-    ) }
-    // :
-    //  (<View style={styles.container}> <Text style={{ fontSize: 18 }}> no decks yet </Text></View>);
+    //TODO: make this a component on a different file!
+    if (Object.keys(this.state.decks).length === 0) {
+      return (
+        <View style={styles.blank}>
+          <Text style={{ fontSize: 20 }}> No decks yet!! </Text>
+          <Button
+            title="Add Deck"
+            onPress={() => this.props.navigation.navigate("NewDeck")}
+          />
+        </View>
+      );
+    } else {
+      return (
+        this.state.decks && (
+          <View style={styles.container}>
+            <FlatList
+              data={Object.values(this.state.decks)}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.listItem}
+                  onPress={() =>
+                    this.props.navigation.navigate("Deck", {
+                      deck: item.title,
+                      cardsNumber: item.questions.length,
+                      id: item.id
+                    })
+                  }
+                >
+                  <Text style={styles.title}>{item.title}</Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={item => item.id}
+            />
+            <CustomButton
+              onPress={() => {
+                this.props.navigation.navigate("NewDeck");
+              }}
+            >
+              Create a new Deck
+            </CustomButton>
+          </View>
+        )
+      );
+    }
   }
 }
 
@@ -60,7 +79,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    justifyContent: 'flex-start'
+    justifyContent: "flex-start"
   },
   listItem: {
     flex: 1,
@@ -69,14 +88,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 20,
     borderRadius: 5,
-    borderWidth: 2,
+    borderWidth: 2
   },
   blank: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
-   title: {
+  title: {
     fontSize: 25,
     textAlign: "center"
   }
