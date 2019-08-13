@@ -13,7 +13,9 @@ import { AsyncStorage } from "react-native";
 
 class DecksList extends Component {
   static navigationOptions = {
-    headerTitle: "Flash Cards"
+    title: "Flash Cards",
+    headerStyle: { backgroundColor: '#E8E8E8' },
+    headerTitleStyle: { color: '#1E90FF', flex: 1, textAlign: 'center'},
   };
 
   state = {
@@ -32,11 +34,14 @@ class DecksList extends Component {
     if (Object.keys(this.state.decks).length === 0) {
       return (
         <View style={styles.blank}>
-          <Text style={{ fontSize: 20 }}> No decks yet!! </Text>
-          <Button
-            title="Add Deck"
-            onPress={() => this.props.navigation.navigate("NewDeck")}
-          />
+          <Text style={{ fontSize: 25, color: '#B8B8B8' }}> No decks yet!! </Text>
+          <CustomButton
+              onPress={() => {
+                this.props.navigation.navigate("NewDeck");
+              }}
+            >
+              Create a new Deck
+            </CustomButton>
         </View>
       );
     } else {
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
   blank: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     fontSize: 25,

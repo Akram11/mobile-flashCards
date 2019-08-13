@@ -3,7 +3,13 @@ import { View, Text, Button } from 'react-native';
 
 
 class DeckView extends Component {
+
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam("deck")
+  });
+
   render() {
+    
     const {deck, id, cardsNumber} = this.props.navigation.state.params;
     console.log(this.props)
     return (
