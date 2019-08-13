@@ -22,6 +22,7 @@ class DecksList extends Component {
     decks: {}
   };
 
+  
   componentWillMount() {
     getInitialData().then(data => {
       const decks = JSON.parse(data);
@@ -57,7 +58,8 @@ class DecksList extends Component {
                     this.props.navigation.navigate("Deck", {
                       deck: item.title,
                       cardsNumber: item.questions.length,
-                      id: item.id
+                      id: item.id,
+                      questions: item.questions
                     })
                   }
                 >
@@ -91,9 +93,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     minHeight: 120,
     marginBottom: 10,
-    padding: 20,
-    borderRadius: 5,
-    borderWidth: 2
+    borderRadius: 15,
+    borderWidth: 3,
+    backgroundColor: '#F8F8F8',
+    borderColor: '#D3E7EB'
   },
   blank: {
     flex: 1,
