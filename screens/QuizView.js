@@ -26,32 +26,15 @@ class QuizView extends Component {
     }));
   };
 
-  handleAnswer = (answer, lastQuestion) => {
+  handleAnswer = (answer) => {
     this.setState(state => ({
       ...state,
       correctAnswers: answer ? state.correctAnswers + 1 : state.correctAnswers,
       incorrectAnswers: !answer ? state.incorrectAnswers + 1 : state.incorrectAnswers,
-      index: lastQuestion ? state.index : state.index + 1
+      index: state.index + 1
     }));
 
   } 
-
-  // handleCorrectAnswer = (lastQuestion, answer) => {
-  //   if (lastQuestion) {
-  //     this.setState(state => ({
-  //       ...state,
-  //       correctAnswers: state.correctAnswers + 1,
-  //     }));
-  //   }
-
-  // };
-
-  // handleIncorrectAnswer = () => {
-  //   this.setState(state => ({
-  //     ...state,
-  //     incorrectAnswers: state.incorrectAnswers + 1
-  //   }));
-  // };
 
   static navigationOptions = ({ navigation }) => ({
     title: `Quiz in ${navigation.getParam("deck")}`
@@ -67,11 +50,14 @@ class QuizView extends Component {
       questions
     } = this.props.navigation.state.params;
     let lastQuestion = this.state.index === questions.length - 1 ? true : false;
-    let done = this.state.index === questions.length ? true : false;
+    let done = this.state.index  === questions.length ? true : false;
+    console.log(done)
     return (
-      done ? <View style={styles.container}><Text style={styles.text}>
-      this is done!
-    </Text></ View>  :
+      done ? <View style={styles.container}>
+        <Text style={styles.text}>
+          {` you scored  ${this.state.correctAnswers} of ${questions.length} `}
+     
+       </Text></ View>  :
       <View style={styles.container}>
         <View style={styles.quiz}>
           {!this.state.showSideB ? (
@@ -88,7 +74,6 @@ class QuizView extends Component {
           </CustomButton>
           <CustomButton
             onPress={this.nextCard}
-            disabled={lastQuestion ? true : false}
           >
             {lastQuestion
               ? `End of Deck ${questions.length}/${questions.length}`
@@ -97,7 +82,7 @@ class QuizView extends Component {
         </View>
         
         <View style={styles.buttons}>
-          <CustomButton onPress={() => this.handleAnswer(true, lastQuestion)}>
+          <CustomButton onPress={() => this.handleAnswer(true)}>
             right
           </CustomButton>
           <CustomButton  onPress={() => this.handleAnswer(false)}>
