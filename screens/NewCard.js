@@ -51,8 +51,6 @@ class NewCard extends Component {
             placeholder="what is the question"
             onChangeText={sideA => this.setState({ sideA })}
           />
-
-
           <Text style={styles.text}>Side B</Text>
           <TextInput
             style={styles.input}
@@ -60,10 +58,6 @@ class NewCard extends Component {
             placeholder="what is the answer"
             onChangeText={sideB => this.setState({ sideB })}
           />
-          <View>
-          <Text>{sideA}</Text> 
-         <Text>{sideB}</Text></View>
-          
         <CustomButton onPress={this.handleSubmit}>
           <Text>Create Card</Text>
         </CustomButton>
