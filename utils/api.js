@@ -23,9 +23,9 @@ export const getInitialData = () => {
   });
 };
 
-export const addDeck = deck => {
+export const addDeck = (deck, title) => {
   return AsyncStorage.mergeItem(
     FLASHCARD_STORAGE_KEY,
-    JSON.stringify({ [deck.id]: deck })
+    JSON.stringify({ [title]: deck })
   );
 };

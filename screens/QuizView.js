@@ -3,12 +3,11 @@ import { View, Text, StyleSheet } from "react-native";
 import CustomButton from "../components/CustomButton";
 
 class QuizView extends Component {
-
-    state = {
+  state = {
     showSideB: false,
     index: 0,
     correctAnswers: 0,
-    incorrectAnswers: 0, 
+    incorrectAnswers: 0,
     endOfQuiz: false
   };
 
@@ -26,23 +25,23 @@ class QuizView extends Component {
     }));
   };
 
-  handleAnswer = (answer) => {
+  handleAnswer = answer => {
     this.setState(state => ({
       ...state,
       correctAnswers: answer ? state.correctAnswers + 1 : state.correctAnswers,
-      incorrectAnswers: !answer ? state.incorrectAnswers + 1 : state.incorrectAnswers,
+      incorrectAnswers: !answer
+        ? state.incorrectAnswers + 1
+        : state.incorrectAnswers,
       index: state.index + 1
     }));
-
-  } 
+  };
 
   static navigationOptions = ({ navigation }) => ({
     title: `Quiz in ${navigation.getParam("deck")}`
   });
- 
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     const {
       deck,
       id,
@@ -50,14 +49,15 @@ class QuizView extends Component {
       questions
     } = this.props.navigation.state.params;
     let lastQuestion = this.state.index === questions.length - 1 ? true : false;
-    let done = this.state.index  === questions.length ? true : false;
-    console.log(done)
-    return (
-      done ? <View style={styles.container}>
+    let done = this.state.index === questions.length ? true : false;
+    console.log(done);
+    return done ? (
+      <View style={styles.container}>
         <Text style={styles.text}>
           {` you scored  ${this.state.correctAnswers} of ${questions.length} `}
-     
-       </Text></ View>  :
+        </Text>
+      </View>
+    ) : (
       <View style={styles.container}>
         <View style={styles.quiz}>
           {!this.state.showSideB ? (
@@ -69,23 +69,23 @@ class QuizView extends Component {
               {questions[this.state.index].answer}
             </Text>
           )}
+          <View style={styles.quizButtons}>
           <CustomButton onPress={this.flipCard}>
             {`Show side ${this.state.showSideB ? "A" : "B"}`}
           </CustomButton>
-          <CustomButton
-            onPress={this.nextCard}
-          >
+          <CustomButton onPress={this.nextCard}>
             {lastQuestion
               ? `End of Deck ${questions.length}/${questions.length}`
               : `next card   ${this.state.index + 1}/${questions.length} `}
           </CustomButton>
+          </View>
         </View>
-        
+
         <View style={styles.buttons}>
           <CustomButton onPress={() => this.handleAnswer(true)}>
             right
           </CustomButton>
-          <CustomButton  onPress={() => this.handleAnswer(false)}>
+          <CustomButton onPress={() => this.handleAnswer(false)}>
             wrong
           </CustomButton>
           <Text> {this.state.correctAnswers} </Text>
@@ -101,11 +101,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  quizButtons: {
+    position: "absolute",
+    bottom: 0,
+    flex: 1,
+    alignSelf: "center",
+    width: '100%'
+  },
   quiz: {
     alignSelf: "stretch",
-    backgroundColor: "#555",
+    backgroundColor: "#D3E7EB",
     borderRadius: 5,
-    margin: 5
+    margin: 20,
+    padding: 10,
+    height: 400
   },
   text: {
     fontSize: 24,
