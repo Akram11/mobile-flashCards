@@ -41,7 +41,6 @@ class QuizView extends Component {
   });
 
   render() {
-    console.log(this.state);
     const {
       deck,
       id,
@@ -50,7 +49,6 @@ class QuizView extends Component {
     } = this.props.navigation.state.params;
     let lastQuestion = this.state.index === questions.length - 1 ? true : false;
     let done = this.state.index === questions.length ? true : false;
-    console.log(done);
     return done ? (
       <View style={styles.container}>
         <Text style={styles.text}>

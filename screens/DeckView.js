@@ -9,7 +9,6 @@ class DeckView extends Component {
 
   render() {
     const { deck, id, cardsNumber, questions } = this.props.navigation.state.params;
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <View>

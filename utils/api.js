@@ -33,9 +33,6 @@ export const addDeck = (deck) => {
 export const addCard = (deck, card) => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
-    console.log("data is:", data)  
-    console.log("card is:", card)
-
     data[deck]  = {
       ...data[deck],
       questions: [
@@ -44,8 +41,6 @@ export const addCard = (deck, card) => {
       ]
     }
     AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data));
-    console.log("new deck is:", data[deck])
-
   });
 };
 
