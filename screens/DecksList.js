@@ -11,6 +11,7 @@ import { getInitialData } from "../utils/api";
 import CustomButton from "../components/CustomButton";
 import { AsyncStorage } from "react-native";
 
+
 class DecksList extends Component {
   static navigationOptions = {
     title: "Flash Cards",
@@ -32,6 +33,7 @@ class DecksList extends Component {
 
   render() {
     //TODO: make this a component on a different file!
+    console.log(this.state.decks)
     if (Object.keys(this.state.decks).length === 0) {
       return (
         <View style={styles.blank}>

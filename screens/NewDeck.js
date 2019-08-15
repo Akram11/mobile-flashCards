@@ -13,17 +13,30 @@ import {generateId} from '../utils/helpers'
 
 class NewDeck extends Component {
 
+  static navigationOptions = {
+    title: "Create a new Deck",
+  };
+
 state = {
   text: ""
 }
 
-createDeckObject = (title) => (
+createDeckObject = () => (
   {
     id: generateId(),
-    title: title,
+    title: this.state.text,
     questions: []
   }
 )
+
+handleSubmit = () => {
+  deck = this.createDeckObject()
+  addDeck(deck)
+
+  this.setState(() => ({
+    text: ""
+  }));
+}
 
 handleInput = text => {
   this.setState(() => ({
@@ -33,20 +46,19 @@ handleInput = text => {
 
   render() {
 
-    console.log(this.state)
-    const test = this.createDeckObject(this.state.text)
-    console.log(test)
     const text = this.state.text
     return (
    
          <KeyboardAvoidingView style = {styles.container}behavior="padding" enabled>
          <Text style ={styles.text }>What do you wanna call this Deck?</Text>
-        <TextInput style = {styles.input}  
+        <TextInput 
+         value={text}
+          style = {styles.input}  
           onChangeText={this.handleInput}
           placeholder="e.g Python"
         />
        
-         <CustomButton onPress={this.createDeckObject} disabled = {text === "" ? true : false}>
+         <CustomButton onPress={this.handleSubmit} disabled = {text === "" ? true : false}>
            Create
          </CustomButton>
          <Text>
