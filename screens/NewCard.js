@@ -34,6 +34,11 @@ class NewCard extends Component {
   handleSubmit = () =>{
     card = this.createCardObject()
     addCard (this.props.navigation.state.params.deck, card)
+    this.props.navigation.goBack();
+    this.setState({
+      question: "",
+      answer: ""
+    });
   }
 
 
