@@ -36,6 +36,11 @@ handleSubmit = () => {
   this.setState(() => ({
     text: ""
   }));
+  // this.props.navigation.navigate("Deck", {
+  //   deck: this.state.text,
+  //   cardsNumber: 0,
+  //   questions:[]
+  // });
 }
 
 handleInput = text => {
@@ -95,3 +100,6 @@ const styles = StyleSheet.create({
 });
 
 export default NewDeck;
+
+
+// BUGS: a refresh is still needed to update the view and see the new added deck

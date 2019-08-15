@@ -24,7 +24,7 @@ class DecksList extends Component {
   };
 
   
-  componentWillMount() {
+  componentDidMount() {
     getInitialData().then(data => {
       const decks = JSON.parse(data);
       this.setState({ decks });
