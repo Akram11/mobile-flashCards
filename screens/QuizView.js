@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import CustomButton from "../components/CustomButton";
+import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 class QuizView extends Component {
+
+
+  static navigationOptions = ({ navigation }) => ({
+    title: `Quiz in ${navigation.getParam("deck")}`
+  });
+
+
   state = {
     showSideB: false,
     index: 0,
@@ -36,10 +44,6 @@ class QuizView extends Component {
     }));
   };
 
-  static navigationOptions = ({ navigation }) => ({
-    title: `Quiz in ${navigation.getParam("deck")}`
-  });
-
   render() {
     const {
       deck,
@@ -53,6 +57,8 @@ class QuizView extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>
           {` you scored  ${this.state.correctAnswers} of ${questions.length} `}
+          {/* {clearLocalNotification()
+            .then(setLocalNotification())} */}
         </Text>
       </View>
     ) : (

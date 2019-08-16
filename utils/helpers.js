@@ -1,6 +1,5 @@
 import {AsyncStorage} from 'react-native'
-import {Notifications, Permissions } from 'expo'
-import { notification } from 'expo-haptics';
+import { Notifications, Permissions } from "expo";
 
 
 const NOTIFICATION_KEY = "FlashCards:notifications";
@@ -18,10 +17,10 @@ export const generateId = () => {
 
 
 export const clearLocalNotification = () => {
-  return AsyncStorage.removeItem(NOTIFICATION_KEY)
-  .then(Notification.cancelAllScheduledNotificationsAsync)
-
-}
+  AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync()
+  );
+};
 
 export const createNotification = () => {
   return {
@@ -42,11 +41,11 @@ export const setLocalNotification = () => {
   .then((data) => {
     if (data === null){
       Permissions.askAsync(Permissions.NOTIFICATIONS)
-      .then((status) => {
+      .then(({status}) => {
         if (status === 'granted'){
           Notifications.cancelAllScheduledNotificationsAsync()
           let tmrw = new Date()
-          tmrw.setDate(tomorrow.getDate() + 1)
+          tmrw.setDate(tmrw.getDate() + 1)
           tmrw.setHours(20)
           tmrw.setMinutes(0)
 

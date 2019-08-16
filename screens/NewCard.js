@@ -63,7 +63,7 @@ class NewCard extends Component {
             placeholder="what is the answer"
             onChangeText={sideB => this.setState({ sideB })}
           />
-        <CustomButton onPress={this.handleSubmit}>
+        <CustomButton onPress={this.handleSubmit} disabled = {(sideA === "" || sideB === "")? true : false }>
           <Text>Create Card</Text>
         </CustomButton>
       </KeyboardAvoidingView>
