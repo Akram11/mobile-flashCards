@@ -36,11 +36,11 @@ handleSubmit = () => {
   this.setState(() => ({
     text: ""
   }));
-  // this.props.navigation.navigate("Deck", {
-  //   deck: this.state.text,
-  //   cardsNumber: 0,
-  //   questions:[]
-  // });
+  this.props.navigation.navigate("Deck", {
+    deck: this.state.text,
+    cardsNumber: 0,
+    questions:[]
+  });
 }
 
 handleInput = text => {
