@@ -1,15 +1,12 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import CustomButton from "../components/CustomButton";
-import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import CustomButton from '../components/CustomButton';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class QuizView extends Component {
-
-
   static navigationOptions = ({ navigation }) => ({
-    title: `Quiz in ${navigation.getParam("deck")}`
+    title: `Quiz in ${navigation.getParam('deck')}`
   });
-
 
   state = {
     showSideB: false,
@@ -57,8 +54,8 @@ class QuizView extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>
           {` you scored  ${this.state.correctAnswers} of ${questions.length} `}
-          {/* {clearLocalNotification()
-            .then(setLocalNotification())} */}
+          {clearLocalNotification()}
+          {setLocalNotification()}
         </Text>
       </View>
     ) : (
@@ -74,14 +71,14 @@ class QuizView extends Component {
             </Text>
           )}
           <View style={styles.quizButtons}>
-          <CustomButton onPress={this.flipCard}>
-            {`Show side ${this.state.showSideB ? "A" : "B"}`}
-          </CustomButton>
-          <CustomButton onPress={this.nextCard}>
-            {lastQuestion
-              ? `End of Deck ${questions.length}/${questions.length}`
-              : `next card   ${this.state.index + 1}/${questions.length} `}
-          </CustomButton>
+            <CustomButton onPress={this.flipCard}>
+              {`Show side ${this.state.showSideB ? 'A' : 'B'}`}
+            </CustomButton>
+            <CustomButton onPress={this.nextCard}>
+              {lastQuestion
+                ? `End of Deck ${questions.length}/${questions.length}`
+                : `next card   ${this.state.index + 1}/${questions.length} `}
+            </CustomButton>
           </View>
         </View>
 
@@ -102,19 +99,19 @@ class QuizView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   quizButtons: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     flex: 1,
-    alignSelf: "center",
+    alignSelf: 'center',
     width: '100%'
   },
   quiz: {
-    alignSelf: "stretch",
-    backgroundColor: "#D3E7EB",
+    alignSelf: 'stretch',
+    backgroundColor: '#D3E7EB',
     borderRadius: 5,
     margin: 20,
     padding: 10,
@@ -122,12 +119,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center"
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   buttons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20
   }
 });
