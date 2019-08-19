@@ -5,7 +5,7 @@ import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class QuizView extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `Quiz in ${navigation.getParam('deck')}`
+    title: `Quiz in ${navigation.getParam("title")}`
   });
 
   state = {
