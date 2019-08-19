@@ -36,7 +36,7 @@ class DeckView extends Component {
 
           <CustomButton
             onPress={() => {
-              this.props.navigation.navigate("NewCard", {deck: deck});
+              this.props.navigation.navigate("NewCard", {deck: deck.title});
             }}
           >
             <Text>Add a Card</Text>

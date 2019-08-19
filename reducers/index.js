@@ -21,13 +21,25 @@ export default (state = {}, action) => {
     case CREATE_CARD:
       return {
         ...state,
-        [action.deck]: {
-          ...state[action.deck],
+        [action.deck.title]: {
+          ...state[action.deck.title],
           questions: [
-            state[action.deck].questions,
+            state[action.deck.title].questions,
             { questions: action.card.sideA, answer: card.sideB }
           ]
         }
       };
   }
 };
+
+
+// data[deck]  = {
+//     ...data[deck],
+//     questions: [
+//       ...data[deck].questions,
+//       {question: card.sideA, answer: card.sideB}
+//     ]
+//   }
+
+
+// FIX ADDING A CARD REDUCER/ API FUNCTION/ AND HOW TO SHOW IT IN UI

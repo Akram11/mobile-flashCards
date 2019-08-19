@@ -35,8 +35,9 @@ class NewCard extends Component {
 
   handleSubmit = () =>{
     card = this.createCardObject()
-    deck = this.props.navigation.state.params.deck
-    addCard (deck, card)
+    deck = this.props.deck
+
+    //addCard (deck, card)
     this.props.navigation.goBack();
     this.props.createCard(deck, card)
     this.setState({
@@ -49,10 +50,12 @@ class NewCard extends Component {
 
   render() {
     const {sideA,sideB} = this.state
-    const deck = this.props.navigation.state.params.deck
+    const deck = this.props.deck
+    const card = this.createCardObject()
+    console.log("qqqqqqqqqqqqqqqqqq",card, deck)
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-              <Text > {`add a new card to ${deck}`}</Text>
+              <Text > {`add a new card to ${deck.title}`}</Text>
           <Text style={styles.text}>Side A </Text>
           <TextInput
             style={styles.input}
@@ -104,9 +107,10 @@ const mapDispatchToProps = dispatch => ({
   createCard: (card, deck) => dispatch(createCard(card, deck))
 });
 
-const mapStateToProps = decks => ({
-  decks
+const mapStateToProps = (decks, {navigation}) => ({
+  deck: decks[navigation.getParam("deck")]
 });
+
 
 export default connect(
   mapStateToProps,
