@@ -10,6 +10,9 @@ import {
 import { getInitialData } from '../utils/api';
 import CustomButton from '../components/CustomButton';
 import { AsyncStorage } from 'react-native';
+import { connect } from "react-redux";
+import { receiveDecks } from "../actions/decks";
+
 
 class DecksList extends Component {
   static navigationOptions = {
@@ -19,14 +22,22 @@ class DecksList extends Component {
   };
 
   state = {
-    decks: {}
+    loading: true
   };
 
-  componentDidMount() {
-    getInitialData().then(data => {
-      const decks = JSON.parse(data);
-      this.setState({ decks });
-    });
+  // componentDidMount() {
+  //   getInitialData().then(data => {
+  //     const decks = JSON.parse(data);
+  //     this.setState({ decks });
+  //   });
+  // }
+
+   componentDidMount() {
+    getInitialData()
+      .then(decks => this.props.receiveDecks(decks))
+      .then(() => {
+        this.setState({ loading: false });
+      });
   }
 
   
@@ -38,56 +49,75 @@ class DecksList extends Component {
   };
 
   render() {
+    
     //TODO: make this a component on a different file!
-
-    if (Object.keys(this.state.decks).length === 0) {
+    const { decks } = this.props;
+  console.log("props" , this.props)
+    // if (Object.keys(decks).length === 0) {
+    //   return (
+    //     <View style={styles.blank}>
+    //       <Text style={{ fontSize: 25, color: '#B8B8B8' }}>
+    //         {' '}
+    //         No decks yet!!{' '}
+    //       </Text>
+    //       <CustomButton
+    //         onPress={() => {
+    //           this.props.navigation.navigate('NewDeck', {addDeck: deck => this.setState({decks: {...this.state.decks, deck}})});
+    //         }}
+    //       >
+    //         Create a new Deck
+    //       </CustomButton>
+    //     </View>
+    //   );
+    if (this.state.loading) {
       return (
         <View style={styles.blank}>
-          <Text style={{ fontSize: 25, color: '#B8B8B8' }}>
-            {' '}
-            No decks yet!!{' '}
-          </Text>
-          <CustomButton
-            onPress={() => {
-              this.props.navigation.navigate('NewDeck', {addDeck: deck => this.setState({decks: {...this.state.decks, deck}})});
-            }}
-          >
-            Create a new Deck
-          </CustomButton>
+          <Text>Loading...</Text>
         </View>
       );
     } else {
       return (
-        this.state.decks && (
-          <View style={styles.container}>
-            <FlatList
-              data={Object.values(this.state.decks)}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.listItem}
-                  onPress={() =>
-                    this.props.navigation.navigate('Deck', {
-                      deck: item.title,
-                      cardsNumber: item.questions.length,
-                      id: item.id,
-                      questions: item.questions
-                    })
-                  }
-                >
-                  <Text style={styles.title}>{item.title}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={item => item.id}
-            />
-            <CustomButton
-              onPress={() => {
-                this.props.navigation.navigate('NewDeck');
-              }}
-            >
-              Create a new Deck
-            </CustomButton>
-          </View>
-        )
+        Object.values(decks).length > 0 ? (          <View style={styles.container}>
+          <FlatList
+            data={Object.values(decks)}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.listItem}
+                onPress={() =>
+                  this.props.navigation.navigate('Deck', {
+                    deck: item.title,
+                    cardsNumber: item.questions.length,
+                    id: item.id,
+                    questions: item.questions
+                  })
+                }
+              >
+                <Text style={styles.title}>{item.title}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={item => item.id}
+          />
+          <CustomButton
+            onPress={() => {
+              this.props.navigation.navigate('NewDeck');
+            }}
+          >
+            Create a new Deck
+          </CustomButton>
+        </View>) : (
+          <View style={styles.blank}>
+          <Text style={{ fontSize: 25, color: '#B8B8B8' }}>
+            No decks yet!!
+          </Text>
+          <CustomButton
+            onPress={() => {
+              this.props.navigation.navigate('NewDeck');
+            }}
+          >
+            Create a new Deck
+          </CustomButton>
+        </View>)
+     
       );
     }
   }
@@ -120,4 +150,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DecksList;
+const mapStateToProps = decks => ({
+  decks
+});
+const mapDispatchToProps = dispatch => ({
+  receiveDecks: decks => dispatch(receiveDecks(decks))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DecksList);

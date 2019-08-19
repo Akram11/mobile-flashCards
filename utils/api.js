@@ -10,16 +10,23 @@ export const FLASHCARDS_STORAGE_KEY = 'MobileApp:FlashCards';
 //   });
 // };
 
+// export const getInitialData = () => {
+//   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
+//     const data = JSON.parse(results);
+//     if (data === null) {
+//       return AsyncStorage.setItem(
+//         FLASHCARDS_STORAGE_KEY,
+//         JSON.stringify(initialData)
+//       );
+//     }
+//     return JSON.stringify(data);
+//   });
+// };
+
 export const getInitialData = () => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
-    if (data === null) {
-      return AsyncStorage.setItem(
-        FLASHCARDS_STORAGE_KEY,
-        JSON.stringify(initialData)
-      );
-    }
-    return JSON.stringify(data);
+    return data;
   });
 };
 

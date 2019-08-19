@@ -6,6 +6,8 @@ import {
   TextInput,
   KeyboardAvoidingView
 } from "react-native";
+import { connect } from "react-redux";
+import { createDeck } from "../actions/decks"
 import CustomButton from '../components/CustomButton'
 import {addDeck} from '../utils/api'
 import {generateId} from '../utils/helpers'
@@ -32,11 +34,13 @@ createDeckObject = () => (
 
 handleSubmit = () => {
   deck = this.createDeckObject()
-  addDeck(deck)
+  addDeck(deck)                             //add Deck to AsyncStorage
+  this.props.createDeck(deck);              //add Deck to Redux
 
   this.setState(() => ({
     text: ""
   }));
+  
   this.props.navigation.navigate("Deck", {
     deck: this.state.text,
     cardsNumber: 0,
@@ -101,7 +105,11 @@ const styles = StyleSheet.create({
   }  
 });
 
-export default NewDeck;
+const mapDispatchToProps = dispatch => ({
+  createDeck: (deck) => dispatch(createDeck(deck))
+});
 
-
-// BUGS: a refresh is still needed to update the view and see the new added deck
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewDeck);
