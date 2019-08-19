@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
   Text,
@@ -6,19 +6,18 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity
-} from 'react-native';
-import { getInitialData } from '../utils/api';
-import CustomButton from '../components/CustomButton';
-import { AsyncStorage } from 'react-native';
+} from "react-native";
+import { getInitialData } from "../utils/api";
+import CustomButton from "../components/CustomButton";
+import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import { receiveDecks } from "../actions/decks";
 
-
 class DecksList extends Component {
   static navigationOptions = {
-    title: 'Flash Cards',
-    headerStyle: { backgroundColor: '#E8E8E8' },
-    headerTitleStyle: { color: '#1E90FF', flex: 1, textAlign: 'center' }
+    title: "Flash Cards",
+    headerStyle: { backgroundColor: "#E8E8E8" },
+    headerTitleStyle: { color: "#1E90FF", flex: 1, textAlign: "center" }
   };
 
   state = {
@@ -32,7 +31,7 @@ class DecksList extends Component {
   //   });
   // }
 
-   componentDidMount() {
+  componentDidMount() {
     getInitialData()
       .then(decks => this.props.receiveDecks(decks))
       .then(() => {
@@ -40,19 +39,17 @@ class DecksList extends Component {
       });
   }
 
-  
   addDeck = deck => {
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state,
       deck
     }));
   };
 
   render() {
-    
     //TODO: make this a component on a different file!
     const { decks } = this.props;
-  console.log("props" , this.props)
+    console.log("props", this.props);
     // if (Object.keys(decks).length === 0) {
     //   return (
     //     <View style={styles.blank}>
@@ -76,15 +73,15 @@ class DecksList extends Component {
         </View>
       );
     } else {
-      return (
-        Object.values(decks).length > 0 ? (          <View style={styles.container}>
+      return Object.values(decks).length > 0 ? (
+        <View style={styles.container}>
           <FlatList
             data={Object.values(decks)}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.listItem}
                 onPress={() =>
-                  this.props.navigation.navigate('Deck', {
+                  this.props.navigation.navigate("Deck", {
                     deck: item.title,
                     cardsNumber: item.questions.length,
                     id: item.id,
@@ -99,25 +96,23 @@ class DecksList extends Component {
           />
           <CustomButton
             onPress={() => {
-              this.props.navigation.navigate('NewDeck');
+              this.props.navigation.navigate("NewDeck");
             }}
           >
             Create a new Deck
           </CustomButton>
-        </View>) : (
-          <View style={styles.blank}>
-          <Text style={{ fontSize: 25, color: '#B8B8B8' }}>
-            No decks yet!!
-          </Text>
+        </View>
+      ) : (
+        <View style={styles.blank}>
+          <Text style={{ fontSize: 25, color: "#B8B8B8" }}>No decks yet!!</Text>
           <CustomButton
             onPress={() => {
-              this.props.navigation.navigate('NewDeck');
+              this.props.navigation.navigate("NewDeck");
             }}
           >
             Create a new Deck
           </CustomButton>
-        </View>)
-     
+        </View>
       );
     }
   }
@@ -127,26 +122,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    justifyContent: 'flex-start'
+    justifyContent: "flex-start"
   },
   listItem: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     minHeight: 120,
     marginBottom: 10,
     borderRadius: 15,
     borderWidth: 3,
-    backgroundColor: '#F8F8F8',
-    borderColor: '#D3E7EB'
+    backgroundColor: "#F8F8F8",
+    borderColor: "#D3E7EB"
   },
   blank: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   title: {
     fontSize: 25,
-    textAlign: 'center'
+    textAlign: "center"
   }
 });
 
