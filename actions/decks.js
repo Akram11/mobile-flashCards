@@ -14,8 +14,9 @@ export const createDeck = (deck) => ({
     deck
   });
   
-  export const createCard = (card) => ({
+  export const createCard = (deck, card) => ({
     type: CREATE_CARD,
-    card
+    card,
+    deck
   });
   

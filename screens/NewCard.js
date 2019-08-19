@@ -7,7 +7,9 @@ import {
   StyleSheet
 } from "react-native";
  import CustomButton from '../components/CustomButton'
- import {addCard} from '../utils/api'
+ import { connect } from "react-redux";
+ import { addCard } from '../utils/api'
+ import {createCard} from '../actions/decks'
 
 
 
@@ -33,8 +35,10 @@ class NewCard extends Component {
 
   handleSubmit = () =>{
     card = this.createCardObject()
-    addCard (this.props.navigation.state.params.deck, card)
+    deck = this.props.navigation.state.params.deck
+    addCard (deck, card)
     this.props.navigation.goBack();
+    this.props.createCard(deck, card)
     this.setState({
       question: "",
       answer: ""
@@ -94,4 +98,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewCard;
+
+
+const mapDispatchToProps = dispatch => ({
+  createCard: (card, deck) => dispatch(createCard(card, deck))
+});
+
+const mapStateToProps = decks => ({
+  decks
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewCard);
+

@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import CustomButton from "../components/CustomButton";
 
+
 class DeckView extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("deck")
   });
 
   render() {
-    const { deck, id, cardsNumber, questions } = this.props.navigation.state.params;
+    //const { deck, id, cardsNumber, questions } = this.props.navigation.state.params;
+    const deck = this.props
+    console.log( "props" ,this.props)
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.title}>{deck}</Text>
-          <Text style={styles.cardsNo}>number of cards: {cardsNumber}</Text>
+          <Text style={styles.title}>{deck.title}</Text>
+          <Text style={styles.cardsNo}>number of cards: {deck.questions.length}</Text>
         </View>
         <View>
           {cardsNumber !== 0 && (
@@ -54,4 +57,12 @@ const styles = StyleSheet.create({
   cardsNo: { fontSize: 20, color: "#B8B8B8", textAlign: "center" }
 });
 
-export default DeckView;
+// const mapStateToProps = (state, {navigation}) => ({
+//   deck: state[navigation.getParam("deck")]
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   null
+// )(DeckView);
+export default DeckView
