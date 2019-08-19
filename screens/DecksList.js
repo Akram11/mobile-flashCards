@@ -29,6 +29,14 @@ class DecksList extends Component {
     });
   }
 
+  
+  addDeck = deck => {
+    this.setState((state) => ({
+      ...state,
+      deck
+    }));
+  };
+
   render() {
     //TODO: make this a component on a different file!
 
@@ -41,7 +49,7 @@ class DecksList extends Component {
           </Text>
           <CustomButton
             onPress={() => {
-              this.props.navigation.navigate('NewDeck');
+              this.props.navigation.navigate('NewDeck', {addDeck: deck => this.setState({decks: {...this.state.decks, deck}})});
             }}
           >
             Create a new Deck

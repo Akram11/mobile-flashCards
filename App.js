@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import AppContainer from './navigation/AppContainer';
 import { setLocalNotification } from './utils/helpers';
 import { getInitialData } from './utils/api';
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 class App extends Component {
   componentDidMount() {

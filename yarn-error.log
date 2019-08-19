@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-redux
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\user\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\user\AppData\Local\Programs\Python\Python37\;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Local\atom\bin;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Python27;C:\Python27\scripts;C:\Users\user\AppData\Roaming\npm;C:\Users\user\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\user\AppData\Local\Yarn\bin
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\salt;C:\Program Files (x86)\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\akram.alfawakheeri\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\akram.alfawakheeri\AppData\Local\Programs\Python\Python36\;C:\Users\akram.alfawakheeri\AppData\Local\Microsoft\WindowsApps;C:\Users\akram.alfawakheeri\AppData\Local\atom\bin;C:\Users\akram.alfawakheeri\AppData\Roaming\npm;C:\Users\akram.alfawakheeri\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\akram.alfawakheeri\AppData\Local\GitHubDesktop\bin;C:\Users\akram.alfawakheeri\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.17.3
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\user\Desktop\react ND\mobile-flashCards\node_modules\@babel\plugin-transform-runtime\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\Users\akram.alfawakheeri\Desktop\react\mobile-flashCards\node_modules\@babel\generator\node_modules\.bin'
 
 npm manifest: 
   {

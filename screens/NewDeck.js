@@ -11,6 +11,7 @@ import {addDeck} from '../utils/api'
 import {generateId} from '../utils/helpers'
 
 
+
 class NewDeck extends Component {
 
   static navigationOptions = {
@@ -50,6 +51,7 @@ handleInput = text => {
 };
 
   render() {
+    console.log(this.props)
 
     const text = this.state.text
     return (
