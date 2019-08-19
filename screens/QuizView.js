@@ -52,11 +52,24 @@ class QuizView extends Component {
     let done = this.state.index === questions.length ? true : false;
     return done ? (
       <View style={styles.container}>
-        <Text style={styles.text}>
-          {` you scored  ${this.state.correctAnswers} of ${questions.length} `}
-          {clearLocalNotification()}
-          {setLocalNotification()}
+        <Text style={styles.score}>
+          {` You scored  ${this.state.correctAnswers} of ${questions.length} `}
         </Text>
+        {clearLocalNotification()}
+        {setLocalNotification()}
+        {/* <CustomButton
+          onPress={this.props.navigation.navigate('Quiz', {
+            deck,
+            id,
+            cardsNumber,
+            questions
+          })}
+        >
+          Restar Quiz
+        </CustomButton> */}
+        {/* <CustomButton onPress={this.props.navigation.navigate('Home')}>
+          Home
+        </CustomButton> */}
       </View>
     ) : (
       <View style={styles.container}>
@@ -108,6 +121,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'center',
     width: '100%'
+  },
+  score: {
+    color: '#1E90FF',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 50
   },
   quiz: {
     alignSelf: 'stretch',
