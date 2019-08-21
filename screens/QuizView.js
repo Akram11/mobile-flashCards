@@ -24,13 +24,6 @@ class QuizView extends Component {
     }));
   };
 
-  nextCard = () => {
-    this.setState(state => ({
-      ...state,
-      index: state.index + 1
-    }));
-  };
-
   handleAnswer = answer => {
     this.setState(state => ({
       ...state,
@@ -46,9 +39,6 @@ class QuizView extends Component {
 
   render() {
     const {
-      deck,
-      id,
-      cardsNumber,
       questions
     } = this.props.navigation.state.params;
     let lastQuestion = this.state.index === questions.length - 1 ? true : false;
@@ -83,7 +73,7 @@ class QuizView extends Component {
             <CustomButton onPress={this.flipCard}>
               {`Show side ${this.state.showSideB ? "A" : "B"}`}
             </CustomButton>
-            <CustomButton onPress={this.nextCard}>Skip</CustomButton>
+            <CustomButton onPress={() => this.handleAnswer(false)}>Skip</CustomButton>
           </View>
         </View>
         <Text style={styles.cardsNo}>
