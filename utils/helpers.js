@@ -26,7 +26,7 @@ export const clearLocalNotification = () => {
 export const createNotification = () => {
   return {
     title: 'Time for a quiz!',
-    body: "Don't let the day passed without a small quiz",
+    body: "Don't let the day pass by without a small quiz",
     android: {
       sound: true,
       sticky: false,

@@ -24,7 +24,7 @@ export default (state = {}, action) => {
         [action.deck.title]: {
           ...state[action.deck.title],
           questions: [
-            state[action.deck.title].questions,
+            ...state[action.deck.title].questions,
             { questions: action.card.sideA, answer: card.sideB }
           ]
         }
@@ -32,6 +32,14 @@ export default (state = {}, action) => {
   }
 };
 
+
+// data[deck]  = {
+//   ...data[deck],
+//   questions: [
+//     ...data[deck].questions,
+//     {question: card.sideA, answer: card.sideB}
+//   ]
+// }
 
 // data[deck]  = {
 //     ...data[deck],
