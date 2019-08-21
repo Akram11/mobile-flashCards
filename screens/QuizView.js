@@ -61,29 +61,14 @@ class QuizView extends Component {
         <Text style={styles.score}>
           {` You scored  ${this.state.correctAnswers} of ${questions.length} `}
         </Text>
-
         {clearLocalNotification()}
         {setLocalNotification()}
-
         <CustomButton onPress={this.restartQuiz}>
           <Text>Restart Quiz</Text>
         </CustomButton>
         <CustomButton onPress={() => this.props.navigation.goBack()}>
           <Text>Back to Deck</Text>
         </CustomButton>
-        {/* <CustomButton
-          onPress={this.props.navigation.navigate('Quiz', {
-            deck,
-            id,
-            cardsNumber,
-            questions
-          })}
-        >
-          Restar Quiz
-        </CustomButton> */}
-        {/* <CustomButton onPress={this.props.navigation.navigate('Home')}>
-          Home
-        </CustomButton> */}
       </View>
     ) : (
       <View style={styles.container}>
@@ -110,14 +95,12 @@ class QuizView extends Component {
         </View>
 
         <View style={styles.buttons}>
-          <CustomButton onPress={() => this.handleAnswer(true)}>
-            right
+          <CustomButton style = {styles.right} onPress={() => this.handleAnswer(true)}>
+            <Text>Right</Text>
           </CustomButton>
-          <CustomButton onPress={() => this.handleAnswer(false)}>
-            wrong
+          <CustomButton style = {styles.wrong} onPress={() => this.handleAnswer(false)}>
+          <Text>Wrong</Text>
           </CustomButton>
-          <Text> {this.state.correctAnswers} </Text>
-          <Text> {this.state.incorrectAnswers} </Text>
         </View>
       </View>
     );
@@ -160,6 +143,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20
+  },
+  right: {
+    backgroundColor : '#00cc88',
+    flex: 1,
+    height: 50
+  },
+  wrong: {
+    backgroundColor : '#cc0000',
+    flex: 1
   }
 });
 

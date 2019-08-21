@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   FlatList,
   TouchableOpacity
 } from "react-native";
 import { getInitialData } from "../utils/api";
 import CustomButton from "../components/CustomButton";
-import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import { receiveDecks } from "../actions/decks";
 
@@ -23,13 +21,6 @@ class DecksList extends Component {
   state = {
     loading: true
   };
-
-  // componentDidMount() {
-  //   getInitialData().then(data => {
-  //     const decks = JSON.parse(data);
-  //     this.setState({ decks });
-  //   });
-  // }
 
   componentDidMount() {
     getInitialData()
@@ -47,25 +38,7 @@ class DecksList extends Component {
   };
 
   render() {
-    //TODO: make this a component on a different file!
     const { decks } = this.props;
-    console.log("props######################", this.props);
-    // if (Object.keys(decks).length === 0) {
-    //   return (
-    //     <View style={styles.blank}>
-    //       <Text style={{ fontSize: 25, color: '#B8B8B8' }}>
-    //         {' '}
-    //         No decks yet!!{' '}
-    //       </Text>
-    //       <CustomButton
-    //         onPress={() => {
-    //           this.props.navigation.navigate('NewDeck', {addDeck: deck => this.setState({decks: {...this.state.decks, deck}})});
-    //         }}
-    //       >
-    //         Create a new Deck
-    //       </CustomButton>
-    //     </View>
-    //   );
     if (this.state.loading) {
       return (
         <View style={styles.blank}>
