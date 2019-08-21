@@ -13,6 +13,7 @@ import {
 
 
 
+
 class NewCard extends Component {
 
   static navigationOptions = {
@@ -37,9 +38,9 @@ class NewCard extends Component {
     card = this.createCardObject()
     deck = this.props.deck
 
-    //addCard (deck, card)
-    this.props.navigation.goBack();
+    addCard (deck, card)
     this.props.createCard(deck, card)
+    this.props.navigation.goBack();
     this.setState({
       question: "",
       answer: ""
@@ -52,7 +53,9 @@ class NewCard extends Component {
     const {sideA,sideB} = this.state
     const deck = this.props.deck
     const card = this.createCardObject()
-    console.log("qqqqqqqqqqqqqqqqqq",card, deck)
+    console.log("#####deck new card", deck)
+    console.log("#####CARD new card", card)
+   
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
               <Text > {`add a new card to ${deck.title}`}</Text>

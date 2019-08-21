@@ -40,10 +40,15 @@ export const addDeck = (deck) => {
 export const addCard = (deck, card) => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
-    data[deck]  = {
-      ...data[deck],
+    console.log("data api #####",data)
+    console.log("deck api #####",deck)
+    console.log("card api #####",card)
+    console.log("data[deck] api #####",data[deck])
+    
+    data[deck.title]  = {
+      ...data[deck.title],
       questions: [
-        ...data[deck].questions,
+        ...data[deck.title].questions,
         {question: card.sideA, answer: card.sideB}
       ]
     }

@@ -70,4 +70,3 @@ export default connect(
   mapStateToProps,
   null
 )(DeckView);
-//export default DeckView

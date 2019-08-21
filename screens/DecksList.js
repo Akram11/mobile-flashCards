@@ -49,7 +49,7 @@ class DecksList extends Component {
   render() {
     //TODO: make this a component on a different file!
     const { decks } = this.props;
-    console.log("props", this.props);
+    console.log("props######################", this.props);
     // if (Object.keys(decks).length === 0) {
     //   return (
     //     <View style={styles.blank}>
@@ -78,14 +78,12 @@ class DecksList extends Component {
           <FlatList
             data={Object.values(decks)}
             renderItem={({ item }) => (
+              
               <TouchableOpacity
                 style={styles.listItem}
                 onPress={() =>
                   this.props.navigation.navigate("Deck", {
                     deck: item.title,
-                    cardsNumber: item.questions.length,
-                    id: item.id,
-                    questions: item.questions
                   })
                 }
               >
