@@ -60,7 +60,7 @@ class QuizView extends Component {
     return done ? (
       <View style={styles.container}>
         <Text style={styles.score}>
-          {` You scored  ${this.state.correctAnswers} of ${questions.length} `}
+          {` You scored  ${this.state.correctAnswers} right answers of ${questions.length} `}
         </Text>
         {clearLocalNotification()}
         {setLocalNotification()}
