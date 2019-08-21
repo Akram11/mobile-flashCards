@@ -35,6 +35,7 @@ class QuizView extends Component {
   handleAnswer = answer => {
     this.setState(state => ({
       ...state,
+      showSideB: false,
       correctAnswers: answer ? state.correctAnswers + 1 : state.correctAnswers,
       incorrectAnswers: !answer
         ? state.incorrectAnswers + 1
@@ -86,20 +87,27 @@ class QuizView extends Component {
             <CustomButton onPress={this.flipCard}>
               {`Show side ${this.state.showSideB ? "A" : "B"}`}
             </CustomButton>
-            <CustomButton onPress={this.nextCard}>
-              {lastQuestion
-                ? `End of Deck ${questions.length}/${questions.length}`
-                : `next card   ${this.state.index + 1}/${questions.length} `}
-            </CustomButton>
+            <CustomButton onPress={this.nextCard}>Skip</CustomButton>
           </View>
         </View>
+        <Text style={styles.cardsNo}>
+          {lastQuestion
+            ? `End of Deck ${questions.length}/${questions.length}`
+            : `Card: ${this.state.index + 1} of ${questions.length}`}
+        </Text>
 
         <View style={styles.buttons}>
-          <CustomButton style = {styles.right} onPress={() => this.handleAnswer(true)}>
+          <CustomButton
+            style={styles.right}
+            onPress={() => this.handleAnswer(true)}
+          >
             <Text>Right</Text>
           </CustomButton>
-          <CustomButton style = {styles.wrong} onPress={() => this.handleAnswer(false)}>
-          <Text>Wrong</Text>
+          <CustomButton
+            style={styles.wrong}
+            onPress={() => this.handleAnswer(false)}
+          >
+            <Text>Wrong</Text>
           </CustomButton>
         </View>
       </View>
@@ -145,14 +153,15 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   right: {
-    backgroundColor : '#00cc88',
+    backgroundColor: "#00cc88",
     flex: 1,
     height: 50
   },
   wrong: {
-    backgroundColor : '#cc0000',
+    backgroundColor: "#cc0000",
     flex: 1
-  }
+  },
+  cardsNo: { fontSize: 20, color: "#B8B8B8", textAlign: "center" }
 });
 
 export default QuizView;

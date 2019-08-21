@@ -1,6 +1,6 @@
-import { AsyncStorage } from 'react-native';
-import initialData from './initialData';
-export const FLASHCARDS_STORAGE_KEY = 'MobileApp:FlashCards';
+import { AsyncStorage } from "react-native";
+import initialData from "./initialData";
+export const FLASHCARDS_STORAGE_KEY = "MobileApp:FlashCards";
 
 // export const getDecks = () => {
 //   checkInitialData();
@@ -30,7 +30,7 @@ export const getInitialData = () => {
   });
 };
 
-export const addDeck = (deck) => {
+export const addDeck = deck => {
   return AsyncStorage.mergeItem(
     FLASHCARDS_STORAGE_KEY,
     JSON.stringify({ [deck.title]: deck })
@@ -40,19 +40,13 @@ export const addDeck = (deck) => {
 export const addCard = (deck, card) => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
-    console.log("data api #####",data)
-    console.log("deck api #####",deck)
-    console.log("card api #####",card)
-    console.log("data[deck] api #####",data[deck])
-    
-    data[deck.title]  = {
+    data[deck.title] = {
       ...data[deck.title],
       questions: [
         ...data[deck.title].questions,
-        {question: card.sideA, answer: card.sideB}
+        { question: card.sideA, answer: card.sideB }
       ]
-    }
+    };
     AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data));
   });
 };
-

@@ -25,7 +25,7 @@ export default (state = {}, action) => {
           ...state[action.deck.title],
           questions: [
             ...state[action.deck.title].questions,
-            { questions: action.card.sideA, answer: card.sideB }
+            { question: action.card.sideA, answer: card.sideB }
           ]
         }
       };

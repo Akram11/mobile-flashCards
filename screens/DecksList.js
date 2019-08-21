@@ -51,12 +51,11 @@ class DecksList extends Component {
           <FlatList
             data={Object.values(decks)}
             renderItem={({ item }) => (
-              
               <TouchableOpacity
                 style={styles.listItem}
                 onPress={() =>
                   this.props.navigation.navigate("Deck", {
-                    deck: item.title,
+                    deck: item.title
                   })
                 }
               >
@@ -70,7 +69,7 @@ class DecksList extends Component {
               this.props.navigation.navigate("NewDeck");
             }}
           >
-            Create a new Deck
+            <Text> Create a new Deck</Text>
           </CustomButton>
         </View>
       ) : (

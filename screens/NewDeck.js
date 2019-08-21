@@ -38,6 +38,8 @@ class NewDeck extends Component {
 
     this.props.navigation.navigate("Deck", {
       deck: this.state.text,
+      cardsNumber: 0,
+      questions: []
     });
   };
 
@@ -48,26 +50,24 @@ class NewDeck extends Component {
   };
 
   render() {
+ 
     const text = this.state.text;
-
     return (
-      <KeyboardAvoidingView behavior="padding" enabled>
-        <View style={styles.container}>
-          <Text style={styles.text}>What do you wanna call this Deck?</Text>
-          <TextInput
-            value={text}
-            style={styles.input}
-            onChangeText={this.handleInput}
-            placeholder="e.g Python"
-          />
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+        <Text style={styles.text}>What do you wanna call this Deck?</Text>
+        <TextInput
+          value={text}
+          style={styles.input}
+          onChangeText={this.handleInput}
+          placeholder="e.g Python"
+        />
 
-          <CustomButton
-            onPress={this.handleSubmit}
-            disabled={text === "" ? true : false}
-          >
-            Create
-          </CustomButton>
-        </View>
+        <CustomButton
+          onPress={this.handleSubmit}
+          disabled={text === "" ? true : false}
+        >
+          Create
+        </CustomButton>
       </KeyboardAvoidingView>
     );
   }
