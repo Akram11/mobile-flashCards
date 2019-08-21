@@ -12,7 +12,6 @@ class QuizView extends Component {
     showSideB: false,
     index: 0,
     correctAnswers: 0,
-    incorrectAnswers: 0,
     endOfQuiz: false
   };
 
@@ -37,9 +36,6 @@ class QuizView extends Component {
       ...state,
       showSideB: false,
       correctAnswers: answer ? state.correctAnswers + 1 : state.correctAnswers,
-      incorrectAnswers: !answer
-        ? state.incorrectAnswers + 1
-        : state.incorrectAnswers,
       index: state.index + 1
     }));
   };

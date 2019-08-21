@@ -10,7 +10,7 @@ import { getInitialData } from "../utils/api";
 import CustomButton from "../components/CustomButton";
 import { connect } from "react-redux";
 import { receiveDecks } from "../actions/decks";
-
+import {AsyncStorage} from 'react-native';
 class DecksList extends Component {
   static navigationOptions = {
     title: "Flash Cards",
@@ -23,6 +23,7 @@ class DecksList extends Component {
   };
 
   componentDidMount() {
+    AsyncStorage.clear()
     getInitialData()
       .then(decks => this.props.receiveDecks(decks))
       .then(() => {
