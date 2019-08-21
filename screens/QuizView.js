@@ -8,13 +8,15 @@ class QuizView extends Component {
     title: `Quiz in ${navigation.getParam("title")}`
   });
 
-  state = {
+  initialState = {
     showSideB: false,
     index: 0,
     correctAnswers: 0,
     incorrectAnswers: 0,
     endOfQuiz: false
   };
+
+  state = this.initialState
 
   flipCard = () => {
     this.setState(state => ({
@@ -41,6 +43,10 @@ class QuizView extends Component {
     }));
   };
 
+  restartQuiz = () => {
+    this.setState(this.initialState)
+  }
+
   render() {
     const {
       deck,
@@ -55,8 +61,16 @@ class QuizView extends Component {
         <Text style={styles.score}>
           {` You scored  ${this.state.correctAnswers} of ${questions.length} `}
         </Text>
+        
         {clearLocalNotification()}
         {setLocalNotification()}
+
+        
+            <CustomButton onPress={this.restartQuiz}>
+            <Text >
+          Restart Quiz
+        </Text>
+            </CustomButton>
         {/* <CustomButton
           onPress={this.props.navigation.navigate('Quiz', {
             deck,
